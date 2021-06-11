@@ -6,12 +6,13 @@ const Layout = (props) => {
             <Head>
                 <title>{props.title}</title>
             </Head>
-            <div class="container mx-auto px-20 mt-5">
-                {
-                    props.children
-                }
+            <div className='container px-10 mt-10'>
+                <div className='block md:flex gap-5'>
+                    {
+                        props.children
+                    }
+                </div>
             </div>
-            
         </div>
     )
 }
