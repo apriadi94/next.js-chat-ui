@@ -1,17 +1,42 @@
+import { useState, useEffect } from "react"
+import axios from 'axios'
+import Dropdown from './dropdown'
 import ListConversation from "./listConversation"
+import ListContactComponent from "./listContact"
 
 const Left = () => {
+    const [addConversation, setAddConversation] = useState(false)
+    const [listContact, setListContact] = useState([])
+
+    const getContact = () => {
+        axios({
+            method: 'get',
+            url : 'http://localhost:3000/api/contact',
+            headers : {
+                Accept : 'aplication/json'
+            }
+        }).then(res => {
+            setListContact(res.data)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+    useEffect(() => {
+        getContact()
+    }, [])
+
     return(
         <div className="w-full md:w-1/3 shadow-sm mt-5 bg-gray-100">
-              <div className="flex-1 justify-between flex flex-col h-screen">
+              <div className="flex-1 flex flex-col h-screen">
               <div className='m-5'>
                 <div className="grid grid-cols-2">
                     <div>
                         <img className="w-10 h-10 rounded-full bg-gray-100 border-2 border-white" src="https://i.picsum.photos/id/3/200/300.jpg?hmac=o1-38H2y96Nm7qbRf8Aua54lF97OFQSHR41ATNErqFc"/>
                     </div>
                     <div className="flex justify-end items-center gap-6">
-                        <img className='cursor-pointer	w-5 h-5' src='https://cdn.iconscout.com/icon/free/png-256/chat-2047240-1730135.png'/>
-                        <img className='cursor-pointer	w-5 h-5' src='https://cdn3.iconfinder.com/data/icons/basic-user-interface-5/64/dots_dot_dot-menu_option_nav_navigation_main-512.png'/>
+                        <img onClick={() => setAddConversation(!addConversation)} className='cursor-pointer	w-5 h-5' src='https://cdn.iconscout.com/icon/free/png-256/chat-2047240-1730135.png'/>
+                        <Dropdown/>
                     </div>
                 </div>
                 <div className="mt-5">
@@ -24,18 +49,31 @@ const Left = () => {
                 </div>
             </div>
             <div className='w-full max-h-screen mt-2 bg-white  overflow-auto'>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
-                <ListConversation/>
+                {
+                    !addConversation ?
+                    <div>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        <ListConversation/>
+                        
+                    </div> : 
+                    <div>
+                        {
+                            listContact.map((list, index) => 
+                                <ListContactComponent list={list}/>
+                            )
+                        }
+                    </div>
+                }
             </div>
               </div>
         </div>
