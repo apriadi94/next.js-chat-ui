@@ -48,7 +48,7 @@ const Left = () => {
                 </form>
                 </div>
             </div>
-            <div className='w-full max-h-screen mt-2 bg-white  overflow-auto'>
+            <div className='w-full max-h-screen mt-2 bg-white overflow-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>
                 {
                     !addConversation ?
                     <div>
