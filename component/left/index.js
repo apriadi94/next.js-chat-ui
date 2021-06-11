@@ -2,8 +2,9 @@ import ListConversation from "./listConversation"
 
 const Left = () => {
     return(
-        <div className="w-full md:w-1/4 shadow-sm mt-5 bg-gray-100">
-            <div className='m-5'>
+        <div className="w-full md:w-1/3 shadow-sm mt-5 bg-gray-100">
+              <div className="flex-1 justify-between flex flex-col h-screen">
+              <div className='m-5'>
                 <div className="grid grid-cols-2">
                     <div>
                         <img className="w-10 h-10 rounded-full bg-gray-100 border-2 border-white" src="https://i.picsum.photos/id/3/200/300.jpg?hmac=o1-38H2y96Nm7qbRf8Aua54lF97OFQSHR41ATNErqFc"/>
@@ -36,7 +37,7 @@ const Left = () => {
                 <ListConversation/>
                 <ListConversation/>
             </div>
-
+              </div>
         </div>
     )
 }

@@ -7,7 +7,7 @@ const Layout = (props) => {
                 <title>{props.title}</title>
             </Head>
             <div>
-                <div className='container px-10'>
+                <div className='container px-40'>
                     <div className='block md:flex gap-5'>
                         {
                             props.children
