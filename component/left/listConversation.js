@@ -11,7 +11,7 @@ const ListConversation = () => {
                         <div className="flex-none w-full font-normal">
                             <dd className="inline text-black">Sayang.... ilaklun</dd>
                         </div>
-                        <div class="absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 hidden sm:flex lg:hidden xl:flex items-center space-x-1">
+                        <div className="absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 hidden sm:flex lg:hidden xl:flex items-center space-x-1">
                             <dd>15:30</dd>
                         </div>
                     </dl>
