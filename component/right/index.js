@@ -1,5 +1,15 @@
+import { useState, useEffect, useContext } from "react"
+import { AuthContext } from "../../provider/authProvider"
 
 const Right = () => {
+  const { socket, roomId } = useContext(AuthContext)
+
+  useEffect(() => {
+    if(roomId){
+      socket.emit('REQUEST_MESSAGE', roomId)
+    }
+  }, [roomId])
+
     return(
       <div className="w-full md:w-3/4 shadow-sm mt-5 bg-gray-100">
         <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen">

@@ -6,6 +6,8 @@ const socket = socketIOClient(ENDPOINT);
 export const AuthContext = createContext()
 
 export const AuthProvider = ({Auth, children}) => {
+
+    const [roomId, setRoomId] = useState(null)
     
     const [to, setTo] = useState({
         id: '',
@@ -23,7 +25,7 @@ export const AuthProvider = ({Auth, children}) => {
 
         socket.connect();
     }, [])
-    const AuthState = { socket, to, setTo }
+    const AuthState = { socket, to, setTo, roomId, setRoomId }
     return(
         <AuthContext.Provider value={AuthState}>
             {children}

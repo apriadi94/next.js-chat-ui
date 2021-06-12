@@ -9,7 +9,7 @@ const Left = () => {
     const [addConversation, setAddConversation] = useState(false)
     const [listContact, setListContact] = useState([])
     const [listConversation, setListConversation] = useState([])
-    const { socket } = useContext(AuthContext)
+    const { socket, setRoomId } = useContext(AuthContext)
 
     const getContact = () => {
         axios({
