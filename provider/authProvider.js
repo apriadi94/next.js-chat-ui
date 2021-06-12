@@ -12,8 +12,6 @@ export const AuthProvider = ({Auth, children}) => {
         name: '',
         image : ''
     })
-
-    console.log(room)
     
     const [to, setTo] = useState({
         id: '',
