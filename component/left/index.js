@@ -27,7 +27,6 @@ const Left = () => {
     }
 
     useEffect(() => {
-        console.log('panggil')
         getContact()
         socket.emit('REQUEST_CONVERSATION')
         socket.on('CONVERSATION_SENT', data => {
@@ -70,7 +69,8 @@ const Left = () => {
                     </div> : 
                     <div>
                         {
-                            listContact.map((list, index) => 
+                            listContact.filter(item => item.id !== auth.userId)
+                            .map((list, index) => 
                                 <ListContactComponent key={index} list={list}/>
                             )
                         }
