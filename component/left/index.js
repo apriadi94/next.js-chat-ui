@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import axios from 'axios'
 import Dropdown from './dropdown'
 import ListConversation from "./listConversation"
 import ListContactComponent from "./listContact"
+import { AuthContext } from "../../provider/authProvider"
 
 const Left = () => {
     const [addConversation, setAddConversation] = useState(false)
     const [listContact, setListContact] = useState([])
+    const { socket } = useContext(AuthContext)
 
     const getContact = () => {
         axios({
@@ -24,6 +26,10 @@ const Left = () => {
 
     useEffect(() => {
         getContact()
+        socket.emit('REQUEST_CONVERSATION')
+        socket.on('CONVERSATION_SENT', data => {
+            console.log(data)
+        })
     }, [])
 
     return(
