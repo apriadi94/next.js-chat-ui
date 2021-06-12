@@ -14,6 +14,13 @@ const ListConversation = (props) => {
                         <div className=" text-xs text-gray-500 absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 hidden sm:flex lg:hidden xl:flex items-center space-x-1">
                             <dd>{props.list.time}</dd>
                         </div>
+                        {
+                            props.list.unRead > 0 ?
+                            <div className=" text-xs text-white absolute bottom-0 right-0 rounded-full bg-red-400 text-amber-900 px-2 py-0.5 hidden sm:flex lg:hidden xl:flex items-center space-x-1">
+                                <dd>{props.list.unRead}</dd>
+                            </div> : null
+                        }
+                        
                     </dl>
                 </div>
             </article>
