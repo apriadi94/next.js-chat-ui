@@ -8,6 +8,7 @@ import { AuthContext } from "../../provider/authProvider"
 const Left = () => {
     const [addConversation, setAddConversation] = useState(false)
     const [listContact, setListContact] = useState([])
+    const [listConversation, setListConversation] = useState([])
     const { socket } = useContext(AuthContext)
 
     const getContact = () => {
@@ -28,7 +29,7 @@ const Left = () => {
         getContact()
         socket.emit('REQUEST_CONVERSATION')
         socket.on('CONVERSATION_SENT', data => {
-            console.log(data)
+            setListConversation(data)
         })
     }, [])
 
@@ -58,24 +59,17 @@ const Left = () => {
                 {
                     !addConversation ?
                     <div>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
-                        <ListConversation/>
+                        {
+                            listConversation.map((list, index) =>
+                                <ListConversation key={index} list={list}/>
+                            )
+                        }
                         
                     </div> : 
                     <div>
                         {
                             listContact.map((list, index) => 
-                                <ListContactComponent list={list}/>
+                                <ListContactComponent key={index} list={list}/>
                             )
                         }
                     </div>
