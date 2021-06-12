@@ -2,9 +2,13 @@ import { useContext } from "react"
 import { AuthContext } from "../../provider/authProvider"
 
 const ListConversation = (props) => {
-    const { setRoomId } = useContext(AuthContext)
+    const { setRoom } = useContext(AuthContext)
     return(
-        <div onClick={() => setRoomId(props.list.roomId)} className="cursor-pointer hover:bg-gray-200">
+        <div onClick={() => setRoom({
+            id: props.list.roomId,
+            name: props.list.room.name,
+            image: props.list.room.image
+        })} className="cursor-pointer hover:bg-gray-200">
             <article className="p-4 flex space-x-4">
                 <img className="w-10 h-10 rounded-full bg-gray-100 border-2 border-white" src={props.list.room.image}/>        
                 <div className="min-w-0 relative flex-auto sm:pr-20 lg:pr-0 xl:pr-20">

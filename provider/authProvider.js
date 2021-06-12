@@ -7,7 +7,13 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({Auth, children}) => {
 
-    const [roomId, setRoomId] = useState(null)
+    const [room, setRoom] = useState({
+        id: null,
+        name: '',
+        image : ''
+    })
+
+    console.log(room)
     
     const [to, setTo] = useState({
         id: '',
@@ -25,7 +31,7 @@ export const AuthProvider = ({Auth, children}) => {
 
         socket.connect();
     }, [])
-    const AuthState = { socket, to, setTo, roomId, setRoomId }
+    const AuthState = { socket, to, setTo, room, setRoom }
     return(
         <AuthContext.Provider value={AuthState}>
             {children}
