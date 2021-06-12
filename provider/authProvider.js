@@ -5,7 +5,14 @@ const socket = socketIOClient(ENDPOINT);
 
 export const AuthContext = createContext()
 
-export const AuthProvider = ({Auth, children}) => {
+export const AuthProvider = ({children}) => {
+
+    const [auth, setAuth] = useState({
+        token: 'berenang_renang_ketepian', 
+        userId: 1, 
+        username: 'Dimas Nugraha', 
+        profileImage : `https://picsum.photos/id/10/200/300`
+    })
 
     const [room, setRoom] = useState({
         id: null,
@@ -21,15 +28,10 @@ export const AuthProvider = ({Auth, children}) => {
     })
 
     useEffect(() => {
-        socket.auth = { 
-            token: 'berenang_renang_ketepian', 
-            userId: 1, 
-            username: 'Dimas Nugraha', 
-            profileImage : `https://picsum.photos/id/10/200/300`};
-
+        socket.auth = auth;
         socket.connect();
-    }, [])
-    const AuthState = { socket, to, setTo, room, setRoom }
+    }, [auth])
+    const AuthState = { socket, to, setTo, room, setRoom, auth, setAuth }
     return(
         <AuthContext.Provider value={AuthState}>
             {children}

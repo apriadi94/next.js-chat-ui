@@ -3,13 +3,14 @@ import axios from 'axios'
 import Dropdown from './dropdown'
 import ListConversation from "./listConversation"
 import ListContactComponent from "./listContact"
+import ChangeLogin from "./changeLogin"
 import { AuthContext } from "../../provider/authProvider"
 
 const Left = () => {
     const [addConversation, setAddConversation] = useState(false)
     const [listContact, setListContact] = useState([])
     const [listConversation, setListConversation] = useState([])
-    const { socket, setRoomId } = useContext(AuthContext)
+    const { socket, auth } = useContext(AuthContext)
 
     const getContact = () => {
         axios({
@@ -26,12 +27,13 @@ const Left = () => {
     }
 
     useEffect(() => {
+        console.log('panggil')
         getContact()
         socket.emit('REQUEST_CONVERSATION')
         socket.on('CONVERSATION_SENT', data => {
             setListConversation(data)
         })
-    }, [])
+    }, [auth])
 
     return(
         <div className="w-full md:w-1/3 shadow-sm mt-5 bg-gray-100">
@@ -39,7 +41,7 @@ const Left = () => {
               <div className='m-5'>
                 <div className="grid grid-cols-2">
                     <div>
-                        <img className="w-10 h-10 rounded-full bg-gray-100 border-2 border-white" src="https://i.picsum.photos/id/3/200/300.jpg?hmac=o1-38H2y96Nm7qbRf8Aua54lF97OFQSHR41ATNErqFc"/>
+                        <ChangeLogin listContact={listContact}/>
                     </div>
                     <div className="flex justify-end items-center gap-6">
                         <img onClick={() => setAddConversation(!addConversation)} className='cursor-pointer	w-5 h-5' src='https://cdn.iconscout.com/icon/free/png-256/chat-2047240-1730135.png'/>
